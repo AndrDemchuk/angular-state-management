@@ -1,0 +1,13 @@
+<section class="product-section">
+  <div class="section-heading">
+    <h2>Featured Products</h2>
+    <p>{{products.length}} products available</p>
+  </div>
+
+  <div class="product-grid">
+    @for (product of products; track product.id) {
+    <app-product-card [product]="product" (productSelected)="handleProductSelection($event)" />
+    }
+
+  </div>
+</section>
