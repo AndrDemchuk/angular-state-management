@@ -1,12 +1,22 @@
 <section class="product-section">
   <div class="section-heading">
     <h2>Featured Products</h2>
-    <p>{{products.length}} products available</p>
   </div>
 
+  <div class="search-bar">
+    <label for="product-search">
+      Search products
+    </label>
+
+    <input id="product-search" type="search" [formControl]="searchControl" placeholder="Search by name or category" />
+  </div>
+
+  <p>{{products().length}} products available</p>
   <div class="product-grid">
-    @for (product of products; track product.id) {
-    <app-product-card [product]="product" (productSelected)="handleProductSelection($event)" />
+    @for (product of products(); track product.id) {
+    <app-product-card [product]="product" />
+    } @empty {
+    <p>No products found.</p>
     }
 
   </div>
