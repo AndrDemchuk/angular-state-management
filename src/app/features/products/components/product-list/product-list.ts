@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, startWith, switchMap } from 'rxjs';
 import { ProductService } from '../../services/product-service';
 import { ProductCard } from '../product-card/product-card';
+import { ProductStore } from '../../store/product.store';
 
 @Component({
   selector: 'app-product-list',
@@ -13,6 +14,11 @@ import { ProductCard } from '../product-card/product-card';
 })
 export class ProductList {
   private readonly productService = inject(ProductService);
+
+  private readonly productStore = inject(ProductStore);
+  protected readonly productCount = this.productStore.productCount;
+  protected readonly selectedProduct = this.productStore.selectedProduct;
+
   protected readonly searchControl = new FormControl('', { nonNullable: true });
 
   protected handleProductSelection(productId: number): void {
@@ -23,14 +29,16 @@ export class ProductList {
     startWith(''),
     debounceTime(300),
     distinctUntilChanged(),
-    switchMap((query) => this.productService.searchProducts(query))
+    switchMap((query) => this.productService.searchProducts(query)),
   );
 
-  protected readonly products = toSignal(
-    this.products$,
-    {
-      initialValue: []
+  protected readonly products = toSignal(this.products$, {
+    initialValue: [],
+  });
 
-    }
-  );
+  constructor() {
+    effect(() => {
+      this.productStore.setProducts(this.products());
+    })
+  }
 }

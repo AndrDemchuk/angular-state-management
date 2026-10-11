@@ -1,0 +1,7 @@
+<section class="product-summary">
+  <span>Products: {{productCount()}}</span>
+
+  @if(selectedProduct(); as product){
+  <span>Selected: {{product.name}}</span>
+  }
+</section>
