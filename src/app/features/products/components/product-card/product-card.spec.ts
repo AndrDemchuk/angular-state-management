@@ -8,12 +8,21 @@ describe('ProductCard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductCard],
-    }).compileComponents();
+      imports: [ProductCard] // оскільки він Standalone
+    })
+      .compileComponents();
 
     fixture = TestBed.createComponent(ProductCard);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+
+    // 💡 Передаємо тестові дані для обов'язкового input перед першим detectChanges
+    fixture.componentRef.setInput('product', {
+      id: 1,
+      name: 'Test Product',
+      price: 100
+    });
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {

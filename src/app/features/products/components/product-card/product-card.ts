@@ -11,6 +11,7 @@ export class ProductCard {
   readonly product = input.required<Product>();
   readonly productSelected = output<number>();
 
+
   protected selectProduct(): void {
     this.productSelected.emit(this.product().id);
   }
