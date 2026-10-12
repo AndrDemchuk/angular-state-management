@@ -9,5 +9,10 @@
     <button class="product-button" type="button" (click)="selectProduct()">
       View Product
     </button>
+
+    <button type="button" (click)="toggleDetails()">More Details</button>
+    @if(detailsVisible()) {
+    <p class="product-details">Category: {{product().category}}</p>
+    }
   </div>
 </article>

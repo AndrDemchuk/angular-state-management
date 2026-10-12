@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { Product } from '../../models/product';
 
 @Component({
@@ -14,5 +14,10 @@ export class ProductCard {
 
   protected selectProduct(): void {
     this.productSelected.emit(this.product().id);
+  }
+
+  protected detailsVisible = signal(false);
+  protected toggleDetails(): void {
+    this.detailsVisible.update(toggle => !toggle);
   }
 }
