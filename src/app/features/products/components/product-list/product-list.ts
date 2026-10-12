@@ -5,10 +5,11 @@ import { debounceTime, distinctUntilChanged, startWith, switchMap } from 'rxjs';
 import { ProductService } from '../../services/product-service';
 import { ProductCard } from '../product-card/product-card';
 import { ProductStore } from '../../store/product.store';
+import { ProductInsights } from '../product-insights/product-insights';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ProductCard, ReactiveFormsModule],
+  imports: [ProductCard, ProductInsights, ReactiveFormsModule],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })

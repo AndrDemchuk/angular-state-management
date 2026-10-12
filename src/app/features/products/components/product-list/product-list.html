@@ -33,4 +33,14 @@
     <p>No products found.</p>
     }
   </div>
+
+  @defer (on viewport) {
+  <app-product-insights />
+  } @placeholder {
+  <div class="insights-placeholder">
+    Additional product insights will appear here
+  </div>
+  } @loading{
+  <p>Loading product insights</p>
+  }
 </section>

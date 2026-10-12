@@ -16,6 +16,19 @@
   gap: 1.25rem;
 }
 
+.product-insights,
+.insights-placeholder {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  background: #ffffff;
+}
+
+.insights-placeholder {
+  color: #64748b;
+}
+
 .product-card p {
   margin: 0;
   color: #6366f1;

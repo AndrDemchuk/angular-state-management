@@ -4,6 +4,8 @@ import { ProductList } from './features/products/components/product-list/product
 export const routes: Routes = [
   {
     path: '',
-    component: ProductList,
+    loadComponent: () => import(
+      './features/products/components/product-list/product-list'
+    ).then(m => m.ProductList)
   }
 ];
