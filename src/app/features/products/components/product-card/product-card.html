@@ -1,10 +1,13 @@
 <article class="product-card">
-  <p class="product=category">
-    {{product().category}}</p>
+  <p class="product=category">{{product().category}}</p>
 
   <h3>{{product().name}}</h3>
 
-  <p class="product-category">Category: {{product().category}}</p>
-  <strong class="product-price">Price: ${{product().price}}</strong>
-  <button type="button" (click)="selectProduct()">View Product</button>
+  <div class="details-container">
+    <p class="product-category">Category: {{product().category}}</p>
+    <strong class="product-price">Price: ${{product().price}}</strong>
+    <button class="product-button" type="button" (click)="selectProduct()">
+      View Product
+    </button>
+  </div>
 </article>
